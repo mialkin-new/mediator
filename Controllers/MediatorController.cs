@@ -18,15 +18,15 @@ public class MediatorController : ControllerBase
 
     [HttpGet]
     [Route("SendRequest")]
-    public Task<string> SendRequest()
+    public Task<string> SendRequest(string message)
     {
-        return _mediator.Send(new PingRequest());
+        return _mediator.Send(new SomeRequest(message));
     }
 
     [HttpGet]
     [Route("SendNotification")]
-    public Task SendNotification()
+    public Task SendNotification(string message)
     {
-        return _mediator.Publish(new PingNotification());
+        return _mediator.Publish(new SomeEvent(message));
     }
 }
