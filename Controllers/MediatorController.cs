@@ -1,3 +1,4 @@
+using Mediator.TwoKindsOfMessages.Notification;
 using Mediator.TwoKindsOfMessages.RequestResponse;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,5 +21,12 @@ public class MediatorController : ControllerBase
     public Task<string> SendRequest()
     {
         return _mediator.Send(new PingRequest());
+    }
+
+    [HttpGet]
+    [Route("SendNotification")]
+    public Task SendNotification()
+    {
+        return _mediator.Publish(new PingNotification());
     }
 }
